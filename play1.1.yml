@@ -1,0 +1,5 @@
+name: Play 1
+hosts: switches
+tasks:
+  - name: excute command 'create account'
+    command: create accout admin Local-Admin WGU123
