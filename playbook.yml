@@ -1,0 +1,35 @@
+  name: Play 1
+  hosts: switches
+  tasks:
+    - name: excute command 'create account'
+      command: create accout admin Local-Admin WGU123
+
+  name: Play 2
+  hosts: windows1
+  tasks:
+    - name: excute command 'net user'
+      command: net user DesktopUser1 WGU123 /add
+
+  name: Play 3
+  hosts: windows2
+  tasks:
+    - name: excute command 'net user'
+      command: net user DesktopUser2 WGU123 /add
+
+  name: Play 4
+  hosts: windows3
+  tasks:
+    - name: excute command 'net user'
+      command: net user DesktopUser3 WGU123 /add
+
+  name: Play 5
+  hosts: windows4
+  tasks:
+    - name: excute command 'net user'
+      command: net user DesktopUser4 WGU123 /add
+
+  name: Play 6
+  hosts: test boxes
+  tasks:
+    - name: excute command 'create account'
+      command: 
