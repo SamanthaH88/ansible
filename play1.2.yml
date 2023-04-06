@@ -1,0 +1,14 @@
+- name: Play 1
+  hosts: switches
+  gather_facts: false
+  connection: local
+  tasks:
+    - name: excute command 'create account'
+      telnet:
+        user: admin
+        password: /n
+        login_prompt: "Username: "
+        prompts:
+          - '[>|#]'
+        command: 
+          - create accout admin Local-Admin WGU123
