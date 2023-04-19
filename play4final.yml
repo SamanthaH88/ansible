@@ -1,0 +1,130 @@
+- name: Play 1
+  hosts: switches
+  gather_facts: false
+  connection: local
+  tasks:
+    - name: excute command 'create account'
+      ansible.netcommon.telnet:
+        user: service
+        password: password
+        login_prompt: "login:"
+        password_prompt: "password:"
+        prompts:
+          - '[#]'
+        command: 
+          - create accout admin Local-Admin WGU123
+
+- name: Play 2
+  hosts: windows1
+  gather_facts: false
+  tasks:
+    - name: excute command create account
+      win_command: net user /add DesktopUser1 WGU123
+- name: Play 3
+  hosts: windows1
+  gather_facts: false
+  tasks:
+    - name: excute command create account
+      win_command: net localgroup administrators DesktopUser1 /add
+
+- name: Play 4
+  hosts: windows2
+  gather_facts: false
+  tasks:
+    - name: excute command create account
+      win_command: net user /add DesktopUser2 WGU123
+- name: Play 5
+  hosts: windows2
+  gather_facts: false
+  tasks:
+    - name: excute command create account
+      win_command: net localgroup administrators DesktopUser2 /add
+
+- name: Play 6
+  hosts: windows3
+  gather_facts: false
+  tasks:
+    - name: excute command create account
+      win_command: net user /add DesktopUser3 WGU123
+- name: Play 7
+  hosts: windows3
+  gather_facts: false
+  tasks:
+    - name: excute command create account
+      win_command: net localgroup administrators DesktopUser3 /add
+
+- name: Play 8
+  hosts: windows4
+  gather_facts: false
+  tasks:
+    - name: excute command create account
+      win_command: net user /add DesktopUser4 WGU123
+- name: Play 9
+  hosts: windows4
+  gather_facts: false
+  tasks:
+    - name: excute command create account
+      win_command: net localgroup administrators DesktopUser4 /add
+
+- name: Play 10
+  hosts: testbox1
+  gather_facts: false
+  tasks:
+    - name: excute command 'create account'
+      ansible.netcommon.telnet:
+        user: service
+        password: P@ssw0rd
+        login_prompt: "login: "
+        password_prompt: "Password: "
+        prompts:
+          - '[$]'
+        command: adduser TestUser1
+        responses:
+          'New password': 'WGU123'
+          'Retype password': 'WGU123'
+- name: Play 11
+  hosts: testbox1
+  gather_facts: false
+  tasks:
+    - name: excute command 'create account'
+      ansible.netcommon.telnet:
+        save_when: changed
+        user: service
+        password: P@ssw0rd
+        login_prompt: "login: "
+        password_prompt: "Password: "
+        prompts:
+          - '[$]'
+        command: adduser TestUser1 wheel
+
+- name: Play 12
+  hosts: testbox2
+  gather_facts: false
+  tasks:
+    - name: excute command 'create account'
+      ansible.netcommon.telnet:
+        save_when: changed
+        user: service
+        password: P@ssw0rd
+        login_prompt: "login: "
+        password_prompt: "Password: "
+        prompts:
+          - '[$]'
+        command: adduser TestUser2
+        responses:
+          'New password': 'WGU123'
+          'Retype password': 'WGU123'
+- name: Play 13
+  hosts: testbox2
+  gather_facts: false
+  tasks:
+    - name: excute command 'create account'
+      ansible.netcommon.telnet:
+        save_when: changed
+        user: service
+        password: P@ssw0rd
+        login_prompt: "login: "
+        password_prompt: "Password: "
+        prompts:
+          - '[$]'
+        command: adduser TestUser2 wheel
